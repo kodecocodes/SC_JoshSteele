@@ -71,10 +71,6 @@ class WaterInputTableViewController: UITableViewController {
   
   private func saveWaterConsumedToHealthKit() {
     
-    guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
-      fatalError("Dietary Water Type is no longer available in HealthKit")
-    }
-    
     guard let waterConsumed = waterConsumedInputField.text else {
       displayAlert(for: WaterInputDataError.missingWaterConsumed)
       return
@@ -84,6 +80,10 @@ class WaterInputTableViewController: UITableViewController {
     {
       displayAlert(for: WaterInputDataError.invalidValue)
       return
+    }
+    
+    guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+      fatalError("Dietary Water Type is no longer available in HealthKit")
     }
     
     ProfileDataStore.saveSample(value: waterConsumedValue, unit: waterUnitSegmentedControl.getHKUnit(), type: waterType, date: Date())

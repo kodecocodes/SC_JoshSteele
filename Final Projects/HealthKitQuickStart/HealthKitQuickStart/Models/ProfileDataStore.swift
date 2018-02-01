@@ -31,8 +31,8 @@ import HealthKit
 class ProfileDataStore {
   
   class func getAgeSexAndBloodType() throws -> (age: Int,
-    biologicalSex: HKBiologicalSex,
-    bloodType: HKBloodType) {
+    bloodType: HKBloodType,
+    biologicalSex: HKBiologicalSex) {
       
       let healthKitStore = HKHealthStore()
       
@@ -40,8 +40,8 @@ class ProfileDataStore {
         
         //1. This method throws an error if these data are not available.
         let birthdayComponents =  try healthKitStore.dateOfBirthComponents()
-        let biologicalSex =       try healthKitStore.biologicalSex()
         let bloodType =           try healthKitStore.bloodType()
+        let biologicalSex =       try healthKitStore.biologicalSex()
         
         //2. Use Calendar to calculate age.
         let today = Date()
@@ -51,11 +51,53 @@ class ProfileDataStore {
         let ageComponents = calendar.dateComponents([.year], from: birthDay!, to: today)
         
         //3. Unwrap the wrappers to get the underlying enum values.
-        let unwrappedBiologicalSex = biologicalSex.biologicalSex
         let unwrappedBloodType = bloodType.bloodType
+        let unwrappedBiologicalSex = biologicalSex.biologicalSex
         
-        return (ageComponents.year!, unwrappedBiologicalSex, unwrappedBloodType)
+        return (ageComponents.year!, unwrappedBloodType, unwrappedBiologicalSex)
       }
+  }
+  
+  class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date)
+  {
+    let quantity = HKQuantity(unit: unit, doubleValue: value)
+    let sample = HKQuantitySample(type: type,
+                                  quantity: quantity,
+                                  start: date,
+                                  end: date)
+    
+    HKHealthStore().save(sample) { (success, error) in
+      guard let error = error else { print("Successfully saved \(type)"); return }
+      print("Error saving \(type) \(error.localizedDescription)")
+    }
+  }
+  
+  class func queryQuantitySum(for quantityType:HKQuantityType, unit:HKUnit,
+                              completion: @escaping (Double?, Error?) -> Void) {
+    
+    guard let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date())) else {
+      fatalError("Failed to strip time from Date object")
+    }
+    let endDate = Date()
+    
+    let sumOption = HKStatisticsOptions.cumulativeSum
+    let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+    
+    let statisticsSumQuery = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: sumOption) {
+      (query, result, error) in
+      if let sumQuantity = result?.sumQuantity() {
+        DispatchQueue.main.async {
+          let total = sumQuantity.doubleValue(for: unit)
+          completion(total, nil)
+        }
+      }
+      else
+      {
+        print("no sum quantity")
+        completion(nil, error)
+      }
+    }
+    HKHealthStore().execute(statisticsSumQuery)
   }
   
   class func getMostRecentSample(for sampleType: HKSampleType,
@@ -87,46 +129,5 @@ class ProfileDataStore {
       }
     
       HKHealthStore().execute(sampleQuery)
-  }
-  
-  class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date)
-  {
-    let quantity = HKQuantity(unit: unit, doubleValue: value)
-    let sample = HKQuantitySample(type: type,
-                                  quantity: quantity,
-                                  start: date,
-                                  end: date)
-    
-    HKHealthStore().save(sample) { (success, error) in
-      guard let error = error else { print("Successfully saved \(type)"); return }
-      print("Error saving \(type) \(error.localizedDescription)")
-    }
-  }
-  
-  class func queryQuantitySum(for quantityType:HKQuantityType, unit:HKUnit,
-    completion: @escaping (Double?, Error?) -> Void) {
-    
-      let sumOption = HKStatisticsOptions.cumulativeSum
-      guard let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date())) else {
-        fatalError("Failed to strip time from Date object")
-      }
-      let endDate = Date()
-      let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
-    
-      let statisticsSumQuery = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: sumOption) {
-        (query, result, error) in
-        if let sumQuantity = result?.sumQuantity() {
-          DispatchQueue.main.async {
-            let total = sumQuantity.doubleValue(for: unit)
-            completion(total, nil)
-          }
-        }
-        else
-        {
-          print("no sum quantity")
-          completion(nil, error)
-        }
-      }
-      HKHealthStore().execute(statisticsSumQuery)
   }
 }
