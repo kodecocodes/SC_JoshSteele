@@ -106,6 +106,13 @@ class WaterInputTableViewController: UITableViewController {
   }
 }
 
+extension WaterInputTableViewController:UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+}
+
 extension UISegmentedControl
 {
   func getHKUnit() -> HKUnit
