@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func applicationDidFinishLaunching(_ application: UIApplication) {
     
+    //HealthKit authorization takes place immediately!
     authorizeHealthKit()
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.rootViewController = CoordinatorViewController()

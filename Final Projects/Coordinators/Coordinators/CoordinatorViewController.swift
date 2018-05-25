@@ -121,6 +121,7 @@ class CoordinatorViewController: UIViewController {
   
 }
 
+//each view controller delegate has an extension here in the controller (for organizational purposes) and adopting those protocol methods lets the Controller dictate how to navigate to the next screen, display an error, etc.
 extension CoordinatorViewController : LandingPageViewControllerDelegate
 {
   func beginButtonTouched() {
@@ -142,6 +143,7 @@ extension CoordinatorViewController : AddWaterViewControllerDelegate
     presentVC(enterWorkout)
   }
   
+  //You could have errors displayed in a different way for each controller (if you want), and that can all be dictated from the adopted protocol methods here
   func waterSaveFailed(message: String)
   {
     displayAlert(for: message)
@@ -222,6 +224,7 @@ extension CoordinatorViewController : ErrorViewControllerDelegate
   }
 }
 
+//This extension was taken from the HealthKit Quickstart screencast (along with other HealthKit code)
 extension UISegmentedControl
 {
   func getHKUnit() -> HKUnit

@@ -32,9 +32,7 @@ import HealthKit
 
 class ProfileDataStore: UIViewController
 {
-  
-  
-
+  //Saves a workout for the number of calories burned into the HealthKit store
   class func saveWorkout(energyBurned: Double)
   {
     //1. Setup the Calorie Quantity for total energy burned
@@ -60,6 +58,7 @@ class ProfileDataStore: UIViewController
     }
   }
   
+  //Saves a sample (in this example, water consumed) to the store.
   class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date)
   {
     let quantity = HKQuantity(unit: unit, doubleValue: value)

@@ -28,6 +28,7 @@
 
 import UIKit
 
+//Each view controller has a delegate that handles interactions for that page
 protocol LandingPageViewControllerDelegate : class
 {
   func beginButtonTouched()

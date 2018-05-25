@@ -76,7 +76,7 @@ class HealthKitSetupAssistant {
                                                    flights,
                                                    water]
     
-    //4. Request Authorization
+    //Request Authorization
     HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite,
                                          read: healthKitTypesToRead) { (success, error) in
                                           completion(success, error)
