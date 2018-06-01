@@ -58,7 +58,7 @@ class ProfileDataStore {
       }
   }
   
-  class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date)
+  class func saveSample(value: Double, unit: HKUnit, type: HKQuantityType, date: Date)
   {
     //1. Make a HKQuantity
 
@@ -68,7 +68,7 @@ class ProfileDataStore {
 
   }
   
-  class func queryQuantitySum(for quantityType:HKQuantityType, unit:HKUnit,
+  class func queryQuantitySum(for quantityType: HKQuantityType, unit: HKUnit,
                               completion: @escaping (Double?, Error?) -> Void) {
     
     guard let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Date())) else {
