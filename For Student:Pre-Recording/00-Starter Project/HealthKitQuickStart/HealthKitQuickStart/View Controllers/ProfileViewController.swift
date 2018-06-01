@@ -76,7 +76,7 @@ class ProfileViewController: UITableViewController {
       //4. Set the user sex from the returned tuple
       updateLabels()
     } catch let error {
-      self.displayAlert(for: error)
+      displayAlert(for: error)
     }
   }
   
