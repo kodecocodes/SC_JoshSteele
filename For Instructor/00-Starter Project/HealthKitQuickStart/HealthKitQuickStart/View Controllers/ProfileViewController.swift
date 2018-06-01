@@ -49,12 +49,12 @@ class ProfileViewController: UITableViewController {
     }
   }
   
-  @IBOutlet private var ageLabel:UILabel!
-  @IBOutlet private var bloodTypeLabel:UILabel!
-  @IBOutlet private var biologicalSexLabel:UILabel!
-  @IBOutlet private var weightLabel:UILabel!
-  @IBOutlet private var heightLabel:UILabel!
-  @IBOutlet private var bodyMassIndexLabel:UILabel!
+  @IBOutlet private var ageLabel: UILabel!
+  @IBOutlet private var bloodTypeLabel: UILabel!
+  @IBOutlet private var biologicalSexLabel: UILabel!
+  @IBOutlet private var weightLabel: UILabel!
+  @IBOutlet private var heightLabel: UILabel!
+  @IBOutlet private var bodyMassIndexLabel: UILabel!
   
   private let userHealthProfile = UserHealthProfile()
   

@@ -105,7 +105,8 @@ class WaterInputTableViewController: UITableViewController {
   }
 }
 
-extension WaterInputTableViewController:UITextFieldDelegate {
+// MARK: - UITextFieldDelegate
+extension WaterInputTableViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
