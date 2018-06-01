@@ -28,8 +28,7 @@
 
 import UIKit
 
-protocol ApprovalViewControllerDelegate : class
-{
+protocol ApprovalViewControllerDelegate: class {
   func approvalInfo()
   func approvalReturnToHome()
 }
@@ -38,24 +37,11 @@ class ApprovalViewController: UIViewController {
   
   weak var delegate: ApprovalViewControllerDelegate?
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  @IBAction func doneButtonTouched(_ sender: Any)
-  {
+  @IBAction func doneButtonTouched(_ sender: Any) {
     delegate?.approvalReturnToHome()
   }
   
-  @IBAction func approvalInfoButtonTapped(_ sender: Any)
-  {
+  @IBAction func approvalInfoButtonTapped(_ sender: Any) {
     delegate?.approvalInfo()
   }
   

@@ -44,25 +44,21 @@ class AddWaterViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  @IBAction func saveButtonTouched(_ sender: Any)
-  {
+  @IBAction func saveButtonTouched(_ sender: Any) {
     getWater()
   }
   
-  @IBAction func addWaterInfoButtonTapped(_ sender: Any)
-  {
+  @IBAction func addWaterInfoButtonTapped(_ sender: Any) {
     delegate?.addWaterInfo()
   }
   
-  func getWater()
-  {    
+  func getWater() {
     guard let waterConsumed = waterConsumedInputField.text else {
       delegate?.waterSaveFailed(message: WaterInputDataError.missingWaterConsumed.localizedDescription)
       return
     }
     
-    guard let waterConsumedValue = Double(waterConsumed) else
-    {
+    guard let waterConsumedValue = Double(waterConsumed) else {
       delegate?.waterSaveFailed(message: WaterInputDataError.invalidValue.localizedDescription)
       return
     }
@@ -86,8 +82,8 @@ class AddWaterViewController: UIViewController {
   }
 }
 
-extension AddWaterViewController: UITextFieldDelegate
-{
+//MARK - UITextFieldDelegate
+extension AddWaterViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     waterConsumedInputField.resignFirstResponder()
     return true

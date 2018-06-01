@@ -26,8 +26,8 @@ For the script, please see the For Instructor/README.md file
 Want an easy way to record your workouts and the water you consume during them, and store them in HealthKit?  This sample project lets you do just that, and uses a Coordinator Pattern to handle navigation, HealthKit interaction, and displays of alerts to the user.  
 
 ## Main Topics
-* Each view controller defines a protocol, and contains a delegate object of that type
-* The coordinator adopts those protocols to help deal with navigation and other "heavy lifting" like interaction with HealthKit
+* Each view controller defines a protocol, and contains a delegate object of that type.
+* The coordinator adopts those protocols to help deal with navigation and other "heavy lifting" like interaction with HealthKit.
 * The UIViewControllers are unaware of the rest of the app - they just display what they need to display, and pass on further activity to the coordintor.  
 
 
