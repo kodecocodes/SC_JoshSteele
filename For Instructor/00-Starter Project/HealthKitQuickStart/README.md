@@ -55,7 +55,7 @@ A raywenderlich.com Virtual WaterCooler app that tracks how often you get up fro
 
 ## Introduction (Talking Head 1)
 
-Hi everyone, this is Josh.  In this screencast, I’m going to introduce some of the basic concepts of HealthKit.  HealthKit was first released with iOS 8, allowing users to enter health data manually through the Health App, as well as through HealthKit supported third-party apps, such as Runkeeper.  A few notes before we begin – if you want to put HealthKit into your app you have to have a paid developer account.  Also, while your best experience with HealthKit is on an actual device you can do most of what you need to on the simulator.   In this example, I'm going to make a Watercooler app that allows the staff here keep track of their water intake, as well as their steps throughout the day - gotta stay active, and get our 8 glasses of water a day!  Let's get our project set up to work with HealthKit. 
+Hi everyone, this is Josh.  In this screencast, I’m going to introduce some of the basic concepts of HealthKit.  HealthKit was first released with iOS 8, allowing users to enter health data manually through the Health app, as well as through HealthKit supported third-party apps, such as Runkeeper.  A few notes before we begin – if you want to put HealthKit into your app you have to have a paid developer account.  Also, while your best experience with HealthKit is on an actual device you can do most of what you need to on the simulator.   In this example, I'm going to make a Watercooler app that allows the staff here to keep track of their water intake, as well as their steps throughout the day - gotta stay active, and get our 8 glasses of water a day!  Let's get our project set up to work with HealthKit. 
 
 ## Example 1
 
@@ -124,7 +124,7 @@ In addition to reading data from the HealthKit data store, you can also write da
 
 ## Talking Head 4
 
-Now, data is stored in the data store in discrete chunks.  Periods of steps are summed up and stored for a given time period.  What if you want to sum up all of those discrete chunks and give a total for a larger time period?  Luckily the HealthKit API let you do just that.  Let’s look at how we can summarize our step count for the day and display it in the My Day pane.
+Now, data is stored in the data store in discrete chunks.  Periods of steps are summed up and stored for a given time period.  What if you want to sum up all of those discrete chunks and give a total for a larger time period?  Luckily the HealthKit APIs let you do just that.  Let’s look at how we can summarize our step count for the day and display it in the My Day pane.
 
 
 ## Example 4
@@ -137,7 +137,7 @@ Now, data is stored in the data store in discrete chunks.  Periods of steps are 
 
 OK, that's everything I'd like to cover in this screencast.
 
-At this point, you should understand how to setup a project that uses HealthKit, read and write data, and even get summary statistics on data like total steps throughout the day.
+At this point, you should understand how to set up a project that uses HealthKit, read and write data, and even get summary statistics on data like total steps throughout the day.
 
 There's a lot more to HealthKit, including different data types, getting data from other sources such as bluetooth devices, and using HealthKit on your Apple Watch, just to name a few.
 
