@@ -30,11 +30,9 @@ import UIKit
 import HealthKit
 
 
-class ProfileDataStore: UIViewController
-{
+class ProfileDataStore: UIViewController {
   //Saves a workout for the number of calories burned into the HealthKit store
-  class func saveWorkout(energyBurned: Double)
-  {
+  class func saveWorkout(energyBurned: Double) {
     //1. Setup the Calorie Quantity for total energy burned
     let calorieQuantity = HKQuantity(unit: HKUnit.kilocalorie(),
                                      doubleValue: energyBurned)
@@ -53,14 +51,16 @@ class ProfileDataStore: UIViewController
     let healthStore = HKHealthStore()
     
     healthStore.save(workout) { (success, error) in
-      guard let error = error else { print("Successfully saved workout!"); return }
+      guard let error = error else {
+        print("Successfully saved workout!")
+        return
+      }
       print("Error saving workout \(error.localizedDescription)")
     }
   }
   
   //Saves a sample (in this example, water consumed) to the store.
-  class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date)
-  {
+  class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date) {
     let quantity = HKQuantity(unit: unit, doubleValue: value)
     let sample = HKQuantitySample(type: type,
                                   quantity: quantity,
@@ -68,7 +68,10 @@ class ProfileDataStore: UIViewController
                                   end: date)
     
     HKHealthStore().save(sample) { (success, error) in
-      guard let error = error else { print("Successfully saved \(type)"); return }
+      guard let error = error else {
+        print("Successfully saved \(type)")
+        return
+      }
       print("Error saving \(type) \(error.localizedDescription)")
     }
   }

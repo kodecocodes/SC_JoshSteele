@@ -28,8 +28,7 @@
 
 import UIKit
 
-protocol ErrorViewControllerDelegate : class
-{
+protocol ErrorViewControllerDelegate: class {
   func errorInfo()
   func returnToReviewPage()
 }
@@ -38,24 +37,11 @@ class ErrorViewController: UIViewController {
   
   weak var delegate: ErrorViewControllerDelegate?
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  @IBAction func returnButtonTouched(_ sender: Any)
-  {
+  @IBAction func returnButtonTouched(_ sender: Any) {
     delegate?.returnToReviewPage()
   }
   
-  @IBAction func errorInfoButtonTapped(_ sender: Any)
-  {
+  @IBAction func errorInfoButtonTapped(_ sender: Any) {
     delegate?.errorInfo()
   }
   

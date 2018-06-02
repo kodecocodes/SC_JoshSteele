@@ -28,7 +28,7 @@
 
 import UIKit
 
-protocol EnterWorkoutTimeViewControllerDelegate : class
+protocol EnterWorkoutTimeViewControllerDelegate: class
 {
   func enterWorkoutInfo()
   func enterWorkoutSaveSuccessful(calories: Double)
@@ -40,25 +40,13 @@ class EnterWorkoutTimeViewController: UIViewController {
   weak var delegate: EnterWorkoutTimeViewControllerDelegate?
   @IBOutlet weak var workoutCaloriesInputField: UITextField!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  @IBAction func saveButtonTouched(_ sender: Any)
-  {
+  @IBAction func saveButtonTouched(_ sender: Any) {
     guard let workoutCaloriesConsumed = workoutCaloriesInputField.text else {
       delegate?.enterWorkoutSaveFailed(message: WorkoutInputDataError.missingWorkoutCalories.localizedDescription)
       return
     }
     
-    guard let workoutCaloriesValue = Double(workoutCaloriesConsumed) else
-    {
+    guard let workoutCaloriesValue = Double(workoutCaloriesConsumed) else {
       delegate?.enterWorkoutSaveFailed(message: WorkoutInputDataError.invalidValue.localizedDescription)
       return
     }
@@ -66,8 +54,7 @@ class EnterWorkoutTimeViewController: UIViewController {
     delegate?.enterWorkoutSaveSuccessful(calories: workoutCaloriesValue)    
   }
   
-  @IBAction func enterWorkoutInfoButtonTapped(_ sender: Any)
-  {
+  @IBAction func enterWorkoutInfoButtonTapped(_ sender: Any) {
     delegate?.enterWorkoutInfo()
   }
   

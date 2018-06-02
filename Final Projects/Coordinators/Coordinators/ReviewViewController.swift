@@ -28,8 +28,7 @@
 
 import UIKit
 
-protocol ReviewViewControllerDelegate : class
-{
+protocol ReviewViewControllerDelegate: class {
   func reviewInfo()
   func reviewSubmitSuccessful()
   func reviewSubmitFailed()
@@ -40,33 +39,20 @@ class ReviewViewController: UIViewController {
   weak var delegate: ReviewViewControllerDelegate?
   @IBOutlet weak var waterConsumedLabel: UILabel!
   @IBOutlet weak var caloriesLabel: UILabel!
-  var waterValue:Double!
-  var caloriesValue:Double!
-  var waterUnit:String!
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
-  }
+  var waterValue: Double!
+  var caloriesValue: Double!
+  var waterUnit: String!
   
   override func viewWillAppear(_ animated: Bool) {
     waterConsumedLabel.text = "\(waterValue!) \(waterUnit!)"
     caloriesLabel.text = "\(caloriesValue!)"
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  @IBAction func submitButtonTouched(_ sender: Any)
-  {
+  @IBAction func submitButtonTouched(_ sender: Any) {
     delegate?.reviewSubmitSuccessful()
   }
   
-  @IBAction func reviewInfoButtonTapped(_ sender: Any)
-  {
+  @IBAction func reviewInfoButtonTapped(_ sender: Any) {
     delegate?.reviewInfo()
   }
 }

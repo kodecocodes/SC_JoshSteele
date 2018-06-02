@@ -29,22 +29,18 @@
 import UIKit
 import HealthKit
 
-protocol AddWaterViewControllerDelegate : class
-{
+protocol AddWaterViewControllerDelegate: class {
   func addWaterInfo()
   func waterSaveSuccessful(waterConsumed: Double, control: UISegmentedControl)
   func waterSaveFailed(message: String)
 }
 
-extension UIViewController
-{
-  func presentVC(_ viewController: UIViewController)
-  {
+extension UIViewController {
+  func presentVC(_ viewController: UIViewController) {
     transition(to: viewController)
   }
   
-  func transition(to child: UIViewController, completion: ((Bool) -> Void)? = nil)
-  {
+  func transition(to child: UIViewController, completion: ((Bool) -> Void)? = nil) {
     let duration = 0.3
     addChildViewController(child)
     
@@ -63,12 +59,12 @@ extension UIViewController
 
 class CoordinatorViewController: UIViewController {
   
-  var landing:LandingPageViewController!
-  var waterController:AddWaterViewController!
-  var enterWorkout:EnterWorkoutTimeViewController!
-  var review:ReviewViewController!
-  var approval:ApprovalViewController!
-  var error:ErrorViewController!
+  var landingController: LandingPageViewController!
+  var waterController: AddWaterViewController!
+  var enterWorkoutController: EnterWorkoutTimeViewController!
+  var reviewController: ReviewViewController!
+  var approvalController: ApprovalViewController!
+  var errorController: ErrorViewController!
   var latestWorkoutCalories: Double!
   var latestWaterConsumed: Double!
   var latestWaterUnit: HKUnit!
@@ -85,25 +81,19 @@ class CoordinatorViewController: UIViewController {
     presentVC(landingPage)
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  func createViewControllers()
-  {
-    landing = LandingPageViewController()
-    landing.delegate = self
+  func createViewControllers() {
+    landingController = LandingPageViewController()
+    landingController.delegate = self
     waterController = AddWaterViewController()
     waterController.delegate = self
-    enterWorkout = EnterWorkoutTimeViewController()
-    enterWorkout.delegate = self
-    review = ReviewViewController()
-    review.delegate = self
-    approval = ApprovalViewController()
-    approval.delegate = self
-    error = ErrorViewController()
-    error.delegate = self
+    enterWorkoutController = EnterWorkoutTimeViewController()
+    enterWorkoutController.delegate = self
+    reviewController = ReviewViewController()
+    reviewController.delegate = self
+    approvalController = ApprovalViewController()
+    approvalController.delegate = self
+    errorController = ErrorViewController()
+    errorController.delegate = self
   }
   
   private func displayAlert(for message: String) {
@@ -122,111 +112,95 @@ class CoordinatorViewController: UIViewController {
 }
 
 //each view controller delegate has an extension here in the controller (for organizational purposes) and adopting those protocol methods lets the Controller dictate how to navigate to the next screen, display an error, etc.
-extension CoordinatorViewController : LandingPageViewControllerDelegate
+extension CoordinatorViewController: LandingPageViewControllerDelegate
 {
   func beginButtonTouched() {
     presentVC(waterController)
   }
 }
 
-extension CoordinatorViewController : AddWaterViewControllerDelegate
+extension CoordinatorViewController: AddWaterViewControllerDelegate
 {
-  func addWaterInfo()
-  {
+  func addWaterInfo() {
     displayAlert(for: "Here, you can enter your water in either oz or mL.  Remember to stay hydrated while you exercise!")
   }
   
-  func waterSaveSuccessful(waterConsumed: Double, control: UISegmentedControl)
-  {
+  func waterSaveSuccessful(waterConsumed: Double, control: UISegmentedControl) {
     latestWaterConsumed = waterConsumed
     latestWaterUnit = control.getHKUnit()
-    presentVC(enterWorkout)
+    presentVC(enterWorkoutController)
   }
   
   //You could have errors displayed in a different way for each controller (if you want), and that can all be dictated from the adopted protocol methods here
-  func waterSaveFailed(message: String)
-  {
+  func waterSaveFailed(message: String) {
     displayAlert(for: message)
   }
 }
 
-extension CoordinatorViewController : EnterWorkoutTimeViewControllerDelegate
+extension CoordinatorViewController: EnterWorkoutTimeViewControllerDelegate
 {
-  func enterWorkoutInfo()
-  {
+  func enterWorkoutInfo() {
     displayAlert(for: "Here, you can enter how many calories you burned during your workout.  Try to close those rings!")
   }
   
-  func enterWorkoutSaveSuccessful(calories: Double)
-  {
+  func enterWorkoutSaveSuccessful(calories: Double) {
     latestWorkoutCalories = calories
-    review.waterValue = latestWaterConsumed
-    review.caloriesValue = latestWorkoutCalories
-    review.waterUnit = latestWaterUnit.unitString
-    presentVC(review)
+    reviewController.waterValue = latestWaterConsumed
+    reviewController.caloriesValue = latestWorkoutCalories
+    reviewController.waterUnit = latestWaterUnit.unitString
+    presentVC(reviewController)
   }
   
-  func enterWorkoutSaveFailed(message: String)
-  {
+  func enterWorkoutSaveFailed(message: String) {
     displayAlert(for: message)
   }
 }
 
-extension CoordinatorViewController : ReviewViewControllerDelegate
-{
-  func reviewInfo()
-  {
+extension CoordinatorViewController: ReviewViewControllerDelegate {
+  func reviewInfo() {
     displayAlert(for: "Here, you can review your entries before you save the data to HealthKit!")
   }
   
-  func reviewSubmitSuccessful()
-  {
+  func reviewSubmitSuccessful() {
     guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
       fatalError("Dietary Water Type is no longer available in HealthKit")
     }
     ProfileDataStore.saveSample(value: latestWaterConsumed, unit: latestWaterUnit, type: waterType, date: Date())
     ProfileDataStore.saveWorkout(energyBurned: latestWorkoutCalories)
     
-    presentVC(approval)
+    presentVC(approvalController)
   }
   
-  func reviewSubmitFailed()
-  {
+  func reviewSubmitFailed() {
     //otherwise go to error page
-    presentVC(error)
+    presentVC(errorController)
   }
 
 }
 
-extension CoordinatorViewController : ApprovalViewControllerDelegate
-{
-  func approvalInfo()
-  {
+extension CoordinatorViewController: ApprovalViewControllerDelegate {
+  func approvalInfo() {
     displayAlert(for: "Great job!  We've stored this workout in HealthKit!")
   }
   
-  func approvalReturnToHome()
-  {
-    presentVC(landing)
+  func approvalReturnToHome() {
+    presentVC(landingController)
   }
 }
 
-extension CoordinatorViewController : ErrorViewControllerDelegate
-{
+extension CoordinatorViewController: ErrorViewControllerDelegate {
   func errorInfo() {
     displayAlert(for: "Oops!  Something went wrong.  Back to the review screen!")
   }
   
-  func returnToReviewPage()
-  {
+  func returnToReviewPage() {
     print("Return button touched")
-    presentVC(landing)
+    presentVC(landingController)
   }
 }
 
 //This extension was taken from the HealthKit Quickstart screencast (along with other HealthKit code)
-extension UISegmentedControl
-{
+extension UISegmentedControl {
   func getHKUnit() -> HKUnit
   {
     switch selectedSegmentIndex {

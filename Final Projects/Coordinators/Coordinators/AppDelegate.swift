@@ -41,8 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
   }
   
-  private func authorizeHealthKit()
-  {
+  private func authorizeHealthKit() {
     HealthKitSetupAssistant.authorizeHealthKit { (authorized, error) in
       
       guard authorized else {
