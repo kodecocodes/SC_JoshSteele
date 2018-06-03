@@ -52,7 +52,8 @@ class HealthKitSetupAssistant {
             let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
             let activeEnergy = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
             let steps = HKObjectType.quantityType(forIdentifier: .stepCount),
-            let flights = HKObjectType.quantityType(forIdentifier: .flightsClimbed)
+            let flights = HKObjectType.quantityType(forIdentifier: .flightsClimbed),
+            let water = HKObjectType.quantityType(forIdentifier: .dietaryWater)
       else {
         
       completion(false, HealthkitSetupError.dataTypeNotAvailable)
@@ -61,7 +62,8 @@ class HealthKitSetupAssistant {
     
     //2. Add the water type to both the read and write arrays
     let healthKitTypesToWrite: Set<HKSampleType> = [bodyMassIndex,
-                                                    activeEnergy]
+                                                    activeEnergy,
+                                                    water]
     
     let healthKitTypesToRead: Set<HKObjectType> = [dateOfBirth,
                                                    bloodType,
@@ -70,9 +72,10 @@ class HealthKitSetupAssistant {
                                                    height,
                                                    bodyMass,
                                                    steps,
-                                                   flights]
+                                                   flights,
+                                                   water]
     
     //3. As HKHealthStore for Authorization
-    
+    HKHealthStore().requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead, completion: { (success, error) in completion(success, error)})
   }
 }

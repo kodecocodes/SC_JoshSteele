@@ -83,9 +83,12 @@ class WaterInputTableViewController: UITableViewController {
     }
     
     //1. Get waterType
-
+    guard let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+      fatalError("Dietary Water Type is no longer available in HealthKit")
+    }
     
     //2. Save to data store
+    ProfileDataStore.saveSample(value: waterConsumedValue, unit: waterUnitSegmentedControl.getHKUnit(), type: waterType, date: Date())
   }
   
   //MARK:  UITableView Delegate

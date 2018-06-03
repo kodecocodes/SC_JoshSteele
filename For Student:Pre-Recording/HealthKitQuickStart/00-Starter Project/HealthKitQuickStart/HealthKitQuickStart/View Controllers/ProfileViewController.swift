@@ -74,6 +74,7 @@ class ProfileViewController: UITableViewController {
       userHealthProfile.age = userAgeSexAndBloodType.age
       userHealthProfile.bloodType = userAgeSexAndBloodType.bloodType
       //4. Set the user sex from the returned tuple
+      userHealthProfile.biologicalSex = userAgeSexAndBloodType.biologicalSex
       updateLabels()
     } catch let error {
       self.displayAlert(for: error)

@@ -31,7 +31,7 @@ import HealthKit
 class ProfileDataStore {
   
   class func getAgeSexAndBloodType() throws -> (age: Int,
-    bloodType: HKBloodType) {
+    bloodType: HKBloodType, biologicalSex: HKBiologicalSex) {
       
       let healthKitStore = HKHealthStore()
       
@@ -41,6 +41,7 @@ class ProfileDataStore {
         let birthdayComponents =  try healthKitStore.dateOfBirthComponents()
         let bloodType =           try healthKitStore.bloodType()
         //1. Get the sex type
+        let biologicalSex =       try healthKitStore.biologicalSex()
         
         //Use Calendar to calculate age.
         let today = Date()
@@ -52,20 +53,26 @@ class ProfileDataStore {
         //Unwrap the wrappers to get the underlying enum values.
         let unwrappedBloodType = bloodType.bloodType
         //2. Unwrap the type
+        let unwrappedBiologicalSex = biologicalSex.biologicalSex
         
         //3. Add the sex to the tuple to return
-        return (ageComponents.year!, unwrappedBloodType)
+        return (ageComponents.year!, unwrappedBloodType, unwrappedBiologicalSex)
       }
   }
   
   class func saveSample(value:Double, unit:HKUnit, type: HKQuantityType, date:Date)
   {
     //1. Make a HKQuantity
+    let quantity = HKQuantity(unit: unit, doubleValue: value)
 
     //2. Make a HKQuantitySample
+    let sample = HKQuantitySample(type: type, quantity: quantity, start: date, end: date)
 
     //3. Save to the store
-
+    HKHealthStore().save(sample) { (success, error) in
+      guard let error = error else { print("Successfully saved \(type)"); return }
+      print("Error saving \(type) \(error.localizedDescription)")
+    }
   }
   
   class func queryQuantitySum(for quantityType:HKQuantityType, unit:HKUnit,
@@ -76,13 +83,30 @@ class ProfileDataStore {
     }
     let endDate = Date()
     
-    //1. Declare a statistics option and predicate
-    
-    
-    //2. Build the HKStatisticsQuery
-    
-    
-    //3. Execute the query
+//    //1. Declare a statistics option and predicate
+//    let sumOption = HKStatisticsOptions.cumulativeSum
+//    
+//    let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+//    //2. Build the HKStatisticsQuery
+//    let statisticsSumQuery = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: sumOption, completionHandler: { (query, result, error) in
+//      
+//      if let sumQuantity = result?.sumQuantity() {
+//        DispatchQueue.main.async {
+//          let total = sumQuantity.doubleValue(for: unit)
+//          completion(total, nil)
+//        }
+//      }
+//      else
+//      {
+//        print("no sum quantity")
+//        completion(nil, error)
+//      }
+//      
+//      
+//    })
+//    
+//    //3. Execute the query
+//    HKHealthStore().execute(statisticsSumQuery)
   }
   
 
