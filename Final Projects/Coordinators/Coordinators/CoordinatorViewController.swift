@@ -137,12 +137,15 @@ extension CoordinatorViewController: AddWaterViewControllerDelegate
   }
 }
 
+//3. Add this extension to implement this delegate
 extension CoordinatorViewController: EnterWorkoutTimeViewControllerDelegate
 {
+  //3a. Display an alert if the info button is tapped
   func enterWorkoutInfo() {
     displayAlert(for: "Here, you can enter how many calories you burned during your workout.  Try to close those rings!")
   }
   
+  //3b. If everything is valid, pass on the values to the review controller, and present it
   func enterWorkoutSaveSuccessful(calories: Double) {
     latestWorkoutCalories = calories
     reviewController.waterValue = latestWaterConsumed
@@ -151,6 +154,7 @@ extension CoordinatorViewController: EnterWorkoutTimeViewControllerDelegate
     presentVC(reviewController)
   }
   
+  //3c.  If the entry failed, display an alert with the passed in message
   func enterWorkoutSaveFailed(message: String) {
     displayAlert(for: message)
   }

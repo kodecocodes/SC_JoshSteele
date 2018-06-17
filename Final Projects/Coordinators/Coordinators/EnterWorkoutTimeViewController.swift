@@ -28,6 +28,7 @@
 
 import UIKit
 
+//1. Add this protocol
 protocol EnterWorkoutTimeViewControllerDelegate: class
 {
   func enterWorkoutInfo()
@@ -37,24 +38,30 @@ protocol EnterWorkoutTimeViewControllerDelegate: class
 
 class EnterWorkoutTimeViewController: UIViewController {
   
+  //2. Declare the delegate
   weak var delegate: EnterWorkoutTimeViewControllerDelegate?
   @IBOutlet weak var workoutCaloriesInputField: UITextField!
   
   @IBAction func saveButtonTouched(_ sender: Any) {
     guard let workoutCaloriesConsumed = workoutCaloriesInputField.text else {
+      
+      //2a. Let the delegate popup the alert with the given message
       delegate?.enterWorkoutSaveFailed(message: WorkoutInputDataError.missingWorkoutCalories.localizedDescription)
       return
     }
     
     guard let workoutCaloriesValue = Double(workoutCaloriesConsumed) else {
+      //2b. Let the delegate popup the alert with the given message
       delegate?.enterWorkoutSaveFailed(message: WorkoutInputDataError.invalidValue.localizedDescription)
       return
     }
     
+    //2c. Let the delegate know the workout was successful
     delegate?.enterWorkoutSaveSuccessful(calories: workoutCaloriesValue)    
   }
   
   @IBAction func enterWorkoutInfoButtonTapped(_ sender: Any) {
+    //2d. Tell the delegate that the enter workout button has been tapped
     delegate?.enterWorkoutInfo()
   }
   
