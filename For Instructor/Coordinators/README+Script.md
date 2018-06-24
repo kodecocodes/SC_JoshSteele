@@ -18,15 +18,22 @@ A coordinator design pattern, which makes heavy use of delegates and protocols, 
 
 ## Introduction (Talking Head 1)
 
-Hey everyone, it's Josh.  Have you ever noticed that some UIViewControllers - even some you may written yourself - seem to do way more than control the views?  Networking calls, Database management, App navigation, and more, can easily get stuffed into a UIViewController, which usually makes them hundreds of lines of code long, and very difficult to maintain since they have their hands in everything.  In this screencast, I'm going to show you an example of the Coordinator pattern, which makes heavy use of delegates and protocols to keep your UIViewControllers nice and small and doing what they were intended to do - control your views.  
+Hey everyone, it's Josh, and I'm back with another raywenderlich.com screencast.  Have you ever noticed that some UIViewControllers - even some you may written yourself - seem to do way more than control the views?  Networking calls, Database management, App navigation, and more, can easily get stuffed into a UIViewController, which usually makes them hundreds of lines of code long, and very difficult to maintain since they have their hands in everything.  In this screencast, I'm going to show you an example of the Coordinator pattern, which makes heavy use of delegates and protocols to keep your UIViewControllers nice and small and doing what they were intended to do - control your views.  
 
 The idea for this screencast was inspired by a series of blog posts by Dave DeLong (@davedelong), so please give Dave a follow if you like what you see here and want to learn more.  In this example, I'm going to setup some view controllers for a small helper app I've been working on to let me enter workouts and water consumption into HealthKit.  Before we look at the code, let's go over the general concept.   
 
-In a typical delegate-protocol pattern, the object you are delegating responsibility to is very "aware" of your app - for example, a UITableViewDataSourceDelegate object knows how many rows should be in your table, passing that knowledge back to the UITableView.  In this example, the UIViewControllers will be delegating back to the Coordinator to determine, among other things, where to navigate to next.  Since the UIViewControllers don't need to worry about navigation anymore, they can focus on doing what they do best - controlling views.  Let's take a look.  
+In a typical delegate-protocol pattern, the object you are delegating responsibility to is very "aware" of your app - for example, a UITableViewDataSourceDelegate object knows how many rows should be in your table, passing that knowledge back to the UITableView.  In this example, the UIViewControllers will be delegating back to the Coordinator to determine, among other things, where to navigate to next.  Since the UIViewControllers don't need to worry about navigation anymore, they can focus on doing what they do best - controlling views. 
 
 ## Example 1
 
-Let's take a look at the project structure, since we're doing things a bit different from your normal project setup.  Here's my almost completed app.  The CoordinatorViewController is the Coordinator for this example, and I already have view controllers and xibs defined. Speaking of which, you may have noticed there is no main storyboard in the project.  Since the coordinator is going to handle navigation, we don't need to worry about segues, so I'm going to just use xib files to layout the views for each UIViewController.  
+[Show start of CoordinatorViewController code]
+Let's take a look at the project structure, since we're doing things a bit different from your normal project setup.  Here's my almost completed app.  The CoordinatorViewController is the Coordinator for this example, and I already have view controllers and xibs defined. 
+
+[Zoom in on listing near LaunchScreen.xib - please do this in editing]
+Speaking of which, you may have noticed there is no main storyboard in the project.  Since the coordinator is going to handle navigation, we don't need to worry about segues, so I'm going to just use xib files to layout the views for each UIViewController.   
+
+[Show LandingPageViewController]
+Each UIViewController subclass has a corresponding protocol that the CoordinatorViewController adopts, so it can pass requests for specific functionality back to the controller.  
 
 
 ## Talking Head 2
@@ -120,10 +127,12 @@ Finally, define enterWorkoutSaveFailed
 `
 Again, this simply shows an alert with the passed in message for this demo, but can be anything you can imagine to display the message to the user!
 
+Now, I can build and run this on the simulator, and all of the functionality I just defined for the workout controller is place.  
+
 ## Conclusion
 
 Working with this coordinator pattern is pretty different from how many iOS developers design their apps, but it definitely helps with maintenance of your code.  UIViewControllers become very simplified, and delegate their responsibilities back to the coordinator.  You can also develop your view controllers and their xibs very quickly, allowing you to get your app up and running, at which point you can focus on components like app navigation, networking, and more.  
 
-
+Be sure to keep coming back to raywenderlich.com for more tutorials and screencasts about iOS development.  See you next time!
 
 
