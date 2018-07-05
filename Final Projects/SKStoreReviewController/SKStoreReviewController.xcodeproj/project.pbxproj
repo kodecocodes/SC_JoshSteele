@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE4EA76720EDAD0D0014E5F7 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4EA76620EDAD0D0014E5F7 /* ReviewViewController.swift */; };
 		D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F2071F4A9144005CD714 /* Main.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE4EA76620EDAD0D0014E5F7 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* SKStoreReviewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKStoreReviewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F2081F4A9144005CD714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				D2A5F2151F4A924B005CD714 /* LaunchScreen.xib */,
 				D2A5F20A1F4A9144005CD714 /* Assets.xcassets */,
 				D2A5F20F1F4A9144005CD714 /* Info.plist */,
+				AE4EA76620EDAD0D0014E5F7 /* ReviewViewController.swift */,
 			);
 			path = SKStoreReviewController;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE4EA76720EDAD0D0014E5F7 /* ReviewViewController.swift in Sources */,
 				D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +268,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3P9488PVA3;
-				INFOPLIST_FILE = MyRWTutorial/Info.plist;
+				INFOPLIST_FILE = SKStoreReviewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.SKStoreReviewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -280,7 +284,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3P9488PVA3;
-				INFOPLIST_FILE = MyRWTutorial/Info.plist;
+				INFOPLIST_FILE = SKStoreReviewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.SKStoreReviewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
