@@ -2,6 +2,25 @@
 ## Domain Based
 
 
+# Screencast Metadata
+
+## Screencast Title
+
+Password Autofill by Domain
+
+## Screencast Description
+
+Password Autofill, once associated with a small server side file on your domain, can be used by iOS to suggest a previously saved username and password, making your login as simple as tapping the QuickType bar - no code changes required!  
+
+## Language, Editor and Platform versions used in this screencast:
+
+* **Language:** Swift 4.1
+* **Platform:** iOS 11.3
+* **Editor**: Xcode 9.3
+
+
+# Script
+
 Hey everyone, it's Josh, and in this screencast, we'll be diving into the wonderful world of password autofill. We're all used to working with password autofill in browsers, but up until iOS 11, we weren't able to provide this very necessary feature into our own apps.
 
 Thankfully, this is quite easy to do. iOS actually has two different types of autofill. The first mode provides users a link to their saved passwords from the device via iCloud Keychain. By doing this, your app will automatically show a QuickType bar with a lock button, which takes you to a list of possible logins to choose from. The second way Password AutoFill can work is by prompting the user with a username in the QuickType bar without having to select the lock button. We can configure our app to perform password autofill based by domain which is what we'll do in this screencast. 
