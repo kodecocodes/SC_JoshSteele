@@ -1,3 +1,26 @@
+
+# Autofill
+## Strong passwords
+
+
+# Screencast Metadata
+
+## Screencast Title
+
+Password Autofill with Strong Passwords and Passcode Autofill
+
+## Screencast Description
+
+In iOS 12, Apple introduced some great improvements to Password Autofill - namely automatic strong password generation, which can suggest strong passwords right on your account creation page (possibly with no code updates!), and SMS authentication code autofill, which grabs authentication codes from Messages and shows them in the QuickType bar.   
+
+## Language, Editor and Platform versions used in this screencast:
+
+* **Language:** Swift 4.2
+* **Platform:** iOS 12 Beta 3 or Above
+* **Editor**: Xcode 10 Beta 3 or Above
+
+
+
 # Autofill
 ## Strong Passwords
 
