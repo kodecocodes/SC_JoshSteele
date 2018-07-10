@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var username: UITextField!
   @IBOutlet weak var password: UITextField!
   @IBOutlet weak var loginButton: UIButton!
+  @IBOutlet weak var createNewAccountButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,7 +47,8 @@ class LoginViewController: UIViewController {
   
   @IBAction func login(_ sender: Any) {
     LoginStatus.loggedIn = true
-    performSegue(withIdentifier: "LoggedIn", sender: self)
+//    performSegue(withIdentifier: "LoggedIn", sender: self)
+    performSegue(withIdentifier: "OneTimeCode", sender: self)
   }
   
   private func validate(username: String?, password: String?) -> Bool {
@@ -62,6 +64,10 @@ class LoginViewController: UIViewController {
   private func enableLoginButton(_ enable: Bool) {
     loginButton.isEnabled = enable
     loginButton.alpha = enable ? 1.0 : 0.5
+  }
+  
+  @IBAction func accountCreated(segue: UIStoryboardSegue) {
+//    dismiss(animated: true, completion: nil)
   }
 }
 
