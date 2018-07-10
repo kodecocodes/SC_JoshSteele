@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 Razeware LLC
+ * Copyright (c) 2018 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,9 +45,9 @@ class LoginViewController: UIViewController {
     return .lightContent
   }
   
+  //Segues to the one time code screen to demo SMS Autofill
   @IBAction func login(_ sender: Any) {
     LoginStatus.loggedIn = true
-//    performSegue(withIdentifier: "LoggedIn", sender: self)
     performSegue(withIdentifier: "OneTimeCode", sender: self)
   }
   
@@ -67,7 +67,6 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func accountCreated(segue: UIStoryboardSegue) {
-//    dismiss(animated: true, completion: nil)
   }
 }
 
@@ -75,8 +74,8 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
   
   func textField(_ textField: UITextField,
-    shouldChangeCharactersIn range: NSRange,
-    replacementString string: String) -> Bool {
+                 shouldChangeCharactersIn range: NSRange,
+                 replacementString string: String) -> Bool {
     
     var usernameText = username.text
     var passwordText = password.text
@@ -90,23 +89,23 @@ extension LoginViewController: UITextFieldDelegate {
         passwordText = proposed
       }
     }
-    // 4
+    
     let isValid = validate(username: usernameText,
                            password: passwordText)
     enableLoginButton(isValid)
     return true
   }
-
+  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-  if textField == username {
-    password.becomeFirstResponder()
-  } else {
-    password.resignFirstResponder()
-    if validate(username: username.text,
-      password: password.text) {
-      login(loginButton)
+    if textField == username {
+      password.becomeFirstResponder()
+    } else {
+      password.resignFirstResponder()
+      if validate(username: username.text,
+                  password: password.text) {
+        login(loginButton)
+      }
     }
+    return false
   }
-  return false
-}
 }
