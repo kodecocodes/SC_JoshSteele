@@ -7,7 +7,7 @@
 
 ## Screencast Title
 
-Password Autofill with Strong Passwords and Passcode Autofill
+Password Autofill in iOS 12: Strong Passwords and Passcode Autofill
 
 ## Screencast Description
 
@@ -26,7 +26,7 @@ In iOS 12, Apple introduced some great improvements to Password Autofill - namel
 
 ### Intro
 
-Hey everyone, it's Josh, and in this screencast, we'll be taking a look at the absolute latest in Password Autofill, straight out of WWDC 2018.  Apple took password autofill up a notch or two in iOS 12, introducing not only the ability for iOS to suggest strong passwords, but also providing a way to grab authentication codes sent by SMS message so you don't have to that oh so delicate of dances back and forth between messages and your app in order to make sure you get that code just right.  Better yet, Apple has designed all of these changes to be very easy to implement - so easy that you may not have to change anything at all in your app!
+Hey everyone, it's Josh, and in this screencast, we'll be taking a look at the absolute latest in Password Autofill, straight out of WWDC 2018.  Apple took password autofill up a notch or two in iOS 12, introducing not only the ability for iOS to suggest strong passwords, but also providing a way to grab authentication codes sent by SMS message so you don't have do that oh-so-delicate of dances back and forth between messages and your app in order to make sure you get that code just right.  Better yet, Apple has designed all of these changes to be very easy to implement - so easy that you may not have to change anything at all in your app!
 
 Now, as I mentioned, these new features build off the capabilities introduced in iOS 11.  If you haven't already checked out the 2 existing Password Autofill screencasts, I highly suggest you check those out before watching this one.  They go over the basics of getting your app setup for Password Autofill, as well as adding a file to your server to register an associated domain - which is a must when using iOS 12's strong passwords capability - more on that in a bit!
 
@@ -37,6 +37,8 @@ Now, the great thing about strong passwords in iOS 12 is that, if your UI compon
 ### Code example - Strong passwords
 
 Here's the AppManager project, which is already setup to use Autofill by Domain, which lets iOS suggest logins to you in a QuickType bar if a matching domain is found in your iCloud Keychain.  But what about creating a new account?  
+
+I've added a few new view controllers to the existing AppManager app, and we'll look at the NewAccountViewController first.  In fact, I'm going to focus on the storyboard, and not the code, because all we have to do is check a few properties to enable strong password suggestion.  In this view controller, I've got a username text field, a password text field, and a button to sign up the new user.  Let's look at the attributes inspector for the 
 
 
 
