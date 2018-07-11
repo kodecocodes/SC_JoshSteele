@@ -80,7 +80,6 @@ extension LoginViewController: UITextFieldDelegate {
     var usernameText = username.text
     var passwordText = password.text
     if let text = textField.text {
-      
       let proposed = (text as NSString)
         .replacingCharacters(in: range, with: string)
       if textField == username {

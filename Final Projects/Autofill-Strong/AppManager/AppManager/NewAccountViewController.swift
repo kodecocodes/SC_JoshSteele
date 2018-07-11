@@ -54,8 +54,8 @@ class NewAccountViewController: UIViewController {
     performSegue(withIdentifier: "Registered", sender: self)
   }
   
-  //performs some simple validation, your real app should do more!
   private func validate(username: String?, password: String?) -> Bool {
+  //performs some simple validation; your real app should do more!
     guard let username = username,
       let password = password,
       username.count >= 5,
