@@ -26,7 +26,7 @@ In iOS 12, Apple introduced some great improvements to Password Autofill - namel
 
 ### Intro
 
-Hey everyone, it's Josh, and in this screencast, we'll be taking a look at the absolute latest in Password Autofill, straight out of WWDC 2018.  Apple took password autofill up a notch or two in iOS 12, introducing not only the ability for iOS to suggest strong passwords, but also providing a way to grab authentication codes sent by SMS message so you don't have do that oh-so-delicate of dances back and forth between messages and your app in order to make sure you get that code just right.  Better yet, Apple has designed all of these changes to be very easy to implement - so easy that you may not have to change anything at all in your app!
+Hey everyone, it's Josh, and in this screencast, we'll be taking a look at the absolute latest in Password Autofill, straight out of WWDC 2018.  Apple took password autofill up a notch or two in iOS 12, introducing not only the ability for iOS to suggest strong passwords, but also providing a way to grab authentication codes sent by SMS so you don't have do that oh-so-delicate of dances back and forth between messages and your app in order to make sure you get that code just right.  Better yet, Apple has designed all of these changes to be very easy to implement - so easy that you may not have to change anything at all in your app!
 
 Now, as I mentioned, these new features build off the capabilities introduced in iOS 11.  If you haven't already checked out the 2 existing Password Autofill screencasts, I highly suggest you check those out before watching this one.  They go over the basics of getting your app setup for Password Autofill, as well as adding a file to your server to register an associated domain - which is a must when using iOS 12's strong passwords capability - more on that in a bit!
 
@@ -36,21 +36,23 @@ Now, the great thing about strong passwords in iOS 12 is that, if your UI compon
 
 ### Code example - Strong passwords
 
-Here's the AppManager project, which is already setup to use Autofill by Domain, which lets iOS suggest logins to you in a QuickType bar if a matching domain is found in your iCloud Keychain.  But what about creating a new account?  
+Here's the AppManager project from the pervious screencasts, which is already setup to use Autofill by Domain, which lets iOS suggest logins to you in the QuickType bar if a matching domain is found in your iCloud Keychain.  But what about creating a new account?  
 
-I've added a few new view controllers to the existing AppManager app, and we'll look at the NewAccountViewController first.  In fact, I'm going to focus on the storyboard, and not the code, because all we have to do is check a few properties to enable strong password suggestion.  In this view controller, I've got a username text field, a password text field, and a button to sign up the new user.  Let's look at the attributes inspector for the 
+I've added two new view controllers to the existing AppManager app, and we'll look at the NewAccountViewController first.  In fact, I'm going to focus on the storyboard, and not the code, because all we have to do is check a few properties to enable strong password suggestion.  In this view controller, I've got a username text field, a password text field, and a button to sign up the new user.  Let's look at the attributes inspector for the username text field.  Here, as in the login screen, the content type is set to username.  The password field is slightly different from the login screen however - it is set to New Password (instead of just Password).  This is the key for Strong Password detection by iOS 12.  If your new account screen is setup with these fields, and their properties are set accordingly, iOS will automatically attempt to suggest a strong, new password.  Let's run this in the simulator and take a look. 
 
-
+If I tap the Create New Account button, and tap on the username field, giving it focus and setting it as the first responder, the quick type bar suggests a username, which it determines from common usernames it finds in iCloud Keychain.  You can choose one from the provided choices or enter your own, and once you give the password field focus, iOS 12 will suggest a strong password.  If you choose this password it will automatically get saved in iCloud Keychain, and will be made available next time you log in.
 
 
 ### Talking Head - Intro to SMS code fetch
 
-In today's account generation world, creating a username and password is just part of the story.  Two-factor authentication is a trusted method to make sure that you definitely are the person logging in, and many websites perform this authenticaion by sending an SMS message containing a code that you have to validate against in the app.  The downside of this though is the dance back and forth between Messages and the app you're trying to put the code in to make sure you get it exactly right which can quickly get annoying.  Luckily, Apple has come to the rescue with another input type you can assign to your UITextField that lets iOS 12 recognize it as a passcode field, and when an SMS comes in, the QuickType bar surfaces with a copy of that code, ready for you to tap.  Let's take a look.  
+In today's account generation world, creating a username and password is just part of the story.  Two-factor authentication is a trusted method to make sure that you definitely are the person logging in, and many websites perform this authenticaion by sending an SMS message containing a code that you have to validate against in the app.  The downside of this, though, is the dance back and forth between Messages and the app you're trying to put the code in to make sure you get it exactly right which can quickly get annoying.  Luckily, Apple has come to the rescue with another input type you can assign to your UITextField that lets iOS 12 recognize it as a passcode field, and when an SMS comes in, the QuickType bar surfaces with a copy of that code, ready for you to tap.  Let's take a look.  
 
 
 ### Code example - getting SMS codes
 
+The other view controller that's new in this project is the PasscodeViewController.  This has a single UITextField and a button to authenticate the passcode that comes in over SMS.  Looking at the attributes inspector for the text field, the content type for this text filed has been set to One Time Code.  This is the tip to iOS that this field will accept a one time code that gets sent to the user over SMS.  That, amazingly, is all you need!  Let's run this in the simulator and take a look.
 
+When I start the app, and login - using the username and strong password I setup earlier - the one time code screen appears.  I'm going to text myself from another device (of course a real app will get a text from the backend service), and when the text comes in, the Quicktype Bar is automatically populated with the code that was sent, and I can authenticate and log in!  
 
 
 ### Conclusion
@@ -59,7 +61,7 @@ As you can see, Apple put a lot of work into the internals of iOS 12's password 
 
 For more about the new features in iOS 12, be sure to check out the WWDC 2018 video entitled "Automatic Strong Passwords and Security Code Autofill", and keep coming back to raywenderlich.com for more screencasts and videos on iOS development.  
 
-Whenever someone mentions strong passwords, I can't help but think about the password "12345" - as Spaceballs: The Movie so eloquentlt put it, "Incredible! That's the same combination as my luggage!"  See you next time!
+Whenever someone mentions strong passwords, I can't help but think about the password "12345" - as Spaceballs: The Movie so eloquently put it, "Incredible! That's the same combination as my luggage!"  See you next time!
 
 
 
