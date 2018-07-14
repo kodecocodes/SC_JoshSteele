@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 Razeware LLC
+ * Copyright (c) 2018 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var username: UITextField!
   @IBOutlet weak var password: UITextField!
   @IBOutlet weak var loginButton: UIButton!
+  @IBOutlet weak var createNewAccountButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -44,9 +45,10 @@ class LoginViewController: UIViewController {
     return .lightContent
   }
   
+  //Segues to the one time code screen to demo SMS Autofill
   @IBAction func login(_ sender: Any) {
     LoginStatus.loggedIn = true
-    performSegue(withIdentifier: "LoggedIn", sender: self)
+    performSegue(withIdentifier: "OneTimeCode", sender: self)
   }
   
   private func validate(username: String?, password: String?) -> Bool {
@@ -64,24 +66,32 @@ class LoginViewController: UIViewController {
     loginButton.alpha = enable ? 1.0 : 0.5
   }
   
+  @IBAction func accountCreated(segue: UIStoryboardSegue) {
+  }
 }
 
+
 extension LoginViewController: UITextFieldDelegate {
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+  
+  func textField(_ textField: UITextField,
+                 shouldChangeCharactersIn range: NSRange,
+                 replacementString string: String) -> Bool {
+    
     var usernameText = username.text
     var passwordText = password.text
     if let text = textField.text {
-      // 1
-      let proposed = (text as NSString).replacingCharacters(in: range, with: string)
+      let proposed = (text as NSString)
+        .replacingCharacters(in: range, with: string)
       if textField == username {
         usernameText = proposed
       } else {
         passwordText = proposed
       }
     }
-    // 2
-  let isValid = validate(username: usernameText, password: passwordText)
-  enableLoginButton(isValid)
+    
+    let isValid = validate(username: usernameText,
+                           password: passwordText)
+    enableLoginButton(isValid)
     return true
   }
   
@@ -90,8 +100,8 @@ extension LoginViewController: UITextFieldDelegate {
       password.becomeFirstResponder()
     } else {
       password.resignFirstResponder()
-      // 3
-      if validate(username: username.text, password: password.text) {
+      if validate(username: username.text,
+                  password: password.text) {
         login(loginButton)
       }
     }
