@@ -1,4 +1,4 @@
-///// Copyright (c) 2017 Razeware LLC
+///// Copyright (c) 2018 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -35,30 +35,26 @@ class ReviewViewController: UIViewController {
   
   let userDefaults = UserDefaults.standard
   
+  let entriesKey = "numberOfEntries"
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     //3. Keep track of the times we've visited this screen to limit the number of review requests
-    let currentFinishCount = userDefaults.integer(forKey: "numberOfEntries")
-    userDefaults.set(currentFinishCount+1, forKey: "numberOfEntries")
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    let currentFinishCount = userDefaults.integer(forKey: entriesKey)
+    userDefaults.set(currentFinishCount + 1, forKey: entriesKey)
   }
   
   @IBAction func submitButtonTouched(_ sender: Any)
   {
     //4. If the number of entries has exceed a certain threshold, ask for a review.  For something fitness related, this number might be 100, so that 3 times a year, you can request a review.  Otherwise, iOS will determine when the review prompt gets generated
-    if userDefaults.integer(forKey: "numberOfEntries") > 2
-    {
+    if userDefaults.integer(forKey: entriesKey) > 2 {
       
       //2. Request a review.  This will always happen in development, never in TestFlight, and only sometimes in release!
       SKStoreReviewController.requestReview()
       
       //5. Reset the counter.
-      userDefaults.set(0, forKey: "numberOfEntries")
+      userDefaults.set(0, forKey: entriesKey)
     }
   }
 }
