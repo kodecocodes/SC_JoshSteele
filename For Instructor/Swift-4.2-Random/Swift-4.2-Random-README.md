@@ -35,14 +35,14 @@ right into the system APIs.  Let's take a look.
 
 # DEMO
 
-Before Swift 4.2, C APIs  had to be used to work with random numbers.  For example, to get
+Before Swift 4.2, C APIs  had to be used to work with random numbers, and most of the methods
+included modulo bias, which meant that they weren't as random as they could be.  For example, to get
  a random number between 0 and 9, I would call arc4random_uniform
 
 `let cRandom = Int(arc4random_uniform(10))`
 
-While this gave a random number, you had to import Foundation, this didn't work on linux, 
-and wasn't very random thanks to modulo bias.  Now in Swift 4.2 the Standard Library 
-includes some random API. Now to get a number between 0 and 9, use random(in:) on the 
+While this gave a random number, you had to import Foundation and this also didn't work on linux.  Now 
+in Swift 4.2 the Standard Library includes some random API. Now to get a number between 0 and 9, use random(in:) on the 
 Int class
 
 `let digit = Int.random(in: 0..<10)`

@@ -62,22 +62,26 @@ class Car: Vehicle {}
 let car = Car(brand: "BMW", year: 2018)
 car.info
 
+
 //: You can also add dynamic member lookup to protocols via protocol extensions.  If I have a `Random` protocol, I can extend it to include a `subscript(dynamicMember:)` method that provides the dynamic member lookup capability, returning a number between 0 and 9
 
 @dynamicMemberLookup
 protocol Random {}
 
 extension Random {
-  subscript(dynamicMember key: String) -> Int {
+  subscript(dynamicMember key:String) -> Int {
     return Int.random(in: 0..<10)
   }
 }
 
 //: I can then extend `Int` to give that type the new functionality.
+
 extension Int: Random {}
 
 //: Finally, I can use the dot syntax to generate a random number, convert it to a string, and filter it out from the string version of the original number
 
 let number = 10
 let randomDigit = String(number.digit)
-let noRandomDigit = String(number).filter{String($0) != randomDigit}
+let noRandomDigit = String(number).filter{String($0) != randomDigit }
+noRandomDigit
+

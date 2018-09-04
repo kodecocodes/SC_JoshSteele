@@ -28,10 +28,13 @@ let germany = Country(name: "Germany", capital: "Berlin")
 let countries: Set = [france, germany]
 let countryGreetings = [france: "Bonjour", germany: "Guten Tag"]
 
+
+
+
 // MARK: - Enumeration Cases Collection
 
 //: I've got an Enum of the seasons here, as well as an enum of SeasonTypes, and I'm looping through them in a for loop.
-//: Before CaseIterable, I had to explcitly define my cases before I loop - and that isn't good if the cases may change later in development.
+//: Before CaseIterable, I had to explicitly define my cases before I loop - and that isn't good if the cases may change later in development.
 
 enum Seasons: String, CaseIterable {
   case spring = "Spring", summer = "Summer", autumn = "Autumn", winter = "Winter"
@@ -42,7 +45,7 @@ enum SeasonType {
   case solstice
 }
 
-//: Here allCases is automatically generated at runtime
+//let seasons = [Seasons.spring, .summer, .autumn, .winter]
 
 for (index, season) in Seasons.allCases.enumerated() {
   let seasonType = index % 2 == 0 ? SeasonType.equinox : .solstice
@@ -62,21 +65,28 @@ enum Months: CaseIterable {
 }
 
 //: Finally, you can even specify that cases with associated values get added - or not! - to the allCases array
-enum BlogPost: CaseIterable {
+enum BlogPost {
   case article
   case tutorial(updated: Bool)
   
+  //add allCases here with allowed associated value entries, be sure to make CaseIterable
   static var allCases: [BlogPost] {
     return [.article, .tutorial(updated: true), .tutorial(updated: false)]
   }
 }
+
+
+
+
+
 
 // MARK: - Removing Elements from Collections
 
 //: Swift 4.2 now includes a removeAll method that takes in a closure, removing all elements from a Collection.  I have an array of things to say at the start or end of conversation.  If I want to keep things brief, I can remove all of the items whose length is greater than 3.
 
 var greetings = ["Hello", "Hi", "Goodbye", "Bye"]
-greetings.removeAll { $0.count > 3 }
+greetings.removeAll{ $0.count > 3}
+greetings
 
 
 // MARK: - Toggling Boolean States
@@ -85,3 +95,5 @@ greetings.removeAll { $0.count > 3 }
 
 var isOn = true
 isOn.toggle()
+isOn
+
