@@ -40,9 +40,7 @@ class LocationViewController: UIViewController {
     manager.desiredAccuracy = kCLLocationAccuracyBest
     manager.delegate = self
     manager.requestAlwaysAuthorization()
-    if #available(iOS 9, *) {
-      manager.allowsBackgroundLocationUpdates = true
-    }
+    manager.allowsBackgroundLocationUpdates = true
     return manager
   }()
   

@@ -72,8 +72,8 @@ class WhateverViewController: UIViewController {
   }
   
   func resetCalculation() {
-    previous = NSDecimalNumber.one
-    current = NSDecimalNumber.one
+    previous = .one
+    current = .one
     position = 1
   }
 }

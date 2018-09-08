@@ -34,7 +34,7 @@ class WhateverViewController: UIViewController {
   var current = NSDecimalNumber.one
   var position: UInt = 1
   var updateTimer: Timer?
-  var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+  var backgroundTask: UIBackgroundTaskIdentifier = .invalid
   
   @IBOutlet var resultsLabel: UILabel!
   
@@ -59,7 +59,7 @@ class WhateverViewController: UIViewController {
       updateTimer?.invalidate()
       updateTimer = nil
       // end background task
-      if backgroundTask != UIBackgroundTaskIdentifier.invalid {
+      if backgroundTask != .invalid {
         endBackgroundTask()
       }
     }
@@ -92,8 +92,8 @@ class WhateverViewController: UIViewController {
   }
   
   func resetCalculation() {
-    previous = NSDecimalNumber.one
-    current = NSDecimalNumber.one
+    previous = .one
+    current = .one
     position = 1
   }
   
@@ -101,17 +101,17 @@ class WhateverViewController: UIViewController {
     backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
       self?.endBackgroundTask()
     }
-    assert(backgroundTask != UIBackgroundTaskIdentifier.invalid)
+    assert(backgroundTask != .invalid)
   }
   
   func endBackgroundTask() {
     print("Background task ended.")
- UIApplication.shared.endBackgroundTask(backgroundTask)
-    backgroundTask = UIBackgroundTaskIdentifier.invalid
+    UIApplication.shared.endBackgroundTask(backgroundTask)
+    backgroundTask = .invalid
   }
   
   @objc func reinstateBackgroundTask() {
-    if updateTimer != nil && (backgroundTask == UIBackgroundTaskIdentifier.invalid) {
+    if updateTimer != nil && (backgroundTask == .invalid) {
       registerBackgroundTask()
     }
   }
