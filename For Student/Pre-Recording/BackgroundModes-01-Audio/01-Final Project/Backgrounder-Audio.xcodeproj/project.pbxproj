@@ -299,9 +299,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = Z788J8U74T;
-				INFOPLIST_FILE = "$(SRCROOT)/TheBackgrounder/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Backgrounder-Audio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.hococoder.TheBackgrounder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.hococoder.BackgrounderAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -315,9 +315,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = Z788J8U74T;
-				INFOPLIST_FILE = "$(SRCROOT)/TheBackgrounder/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Backgrounder-Audio/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.hococoder.TheBackgrounder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.hococoder.BackgrounderAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

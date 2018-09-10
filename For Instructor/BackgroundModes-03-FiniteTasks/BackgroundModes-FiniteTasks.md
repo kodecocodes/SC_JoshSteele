@@ -113,7 +113,7 @@ switch UIApplication.shared.applicationState {
 
 ```
 
-If we run the app, hit play, and then background it, we can see the console reporting the current status of the calculation and the time remaining.  Usually the timer will start around 10 seconds (3 minutes) and if we let this go down to around 5 seconds or so [EDITOR: PLEASE SPEED UP VIDEO THROUGH ~8 second left], the background task will work.  To get it running again, we need to bring the app to the foreground again.  
+If we run the app, hit play, and then background it, we can see the console reporting the current status of the calculation and the time remaining.  Usually the timer will start around 180 seconds (3 minutes) and if we let this go down to around 5 seconds or so [EDITOR: PLEASE SPEED UP VIDEO THROUGH ~8 second left], the background task will work.  To get it running again, we need to bring the app to the foreground again.  
 
 There's one more fix we need to make for this app to work properly.  If we let the timer expire, bring our app to the foreground, and then background it again, the background task doesn't start.  That's because between the timer expiration and returning to the background, we never called `beginBackgroundTaskWithExpirationHandler`.  We can take care of this with a notification.
 

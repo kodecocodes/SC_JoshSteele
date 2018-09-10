@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
-		AF38E20B20F3E92A00BB6019 /* IronBacon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF38E20820F3E92900BB6019 /* IronBacon.mp3 */; };
-		AF38E20C20F3E92A00BB6019 /* FeelinGood.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF38E20920F3E92A00BB6019 /* FeelinGood.mp3 */; };
-		AF38E20D20F3E92A00BB6019 /* WhatYouWant.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AF38E20A20F3E92A00BB6019 /* WhatYouWant.mp3 */; };
 		AF38E21420F3EA6A00BB6019 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF38E21320F3EA6A00BB6019 /* LocationViewController.swift */; };
 		D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F2071F4A9144005CD714 /* Main.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
@@ -19,9 +16,6 @@
 
 /* Begin PBXFileReference section */
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AF38E20820F3E92900BB6019 /* IronBacon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IronBacon.mp3; sourceTree = "<group>"; };
-		AF38E20920F3E92A00BB6019 /* FeelinGood.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FeelinGood.mp3; sourceTree = "<group>"; };
-		AF38E20A20F3E92A00BB6019 /* WhatYouWant.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhatYouWant.mp3; sourceTree = "<group>"; };
 		AF38E21320F3EA6A00BB6019 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* Backgrounder-Location.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Backgrounder-Location.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F2081F4A9144005CD714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,16 +35,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AF38E20E20F3E92D00BB6019 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				AF38E20920F3E92A00BB6019 /* FeelinGood.mp3 */,
-				AF38E20820F3E92900BB6019 /* IronBacon.mp3 */,
-				AF38E20A20F3E92A00BB6019 /* WhatYouWant.mp3 */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D2A5F1F71F4A9143005CD714 = {
 			isa = PBXGroup;
 			children = (
@@ -78,7 +62,6 @@
 				D2A5F20A1F4A9144005CD714 /* Assets.xcassets */,
 				5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */,
 				D2A5F20F1F4A9144005CD714 /* Info.plist */,
-				AF38E20E20F3E92D00BB6019 /* Supporting Files */,
 			);
 			path = "Backgrounder-Location";
 			sourceTree = "<group>";
@@ -147,11 +130,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF38E20D20F3E92A00BB6019 /* WhatYouWant.mp3 in Resources */,
 				D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */,
 				5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */,
-				AF38E20C20F3E92A00BB6019 /* FeelinGood.mp3 in Resources */,
-				AF38E20B20F3E92A00BB6019 /* IronBacon.mp3 in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +279,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = Z788J8U74T;
-				INFOPLIST_FILE = "$(SRCROOT)/TheBackgrounder/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Backgrounder-Location/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.hococoder.TheBackgrounder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -315,7 +295,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = Z788J8U74T;
-				INFOPLIST_FILE = "$(SRCROOT)/TheBackgrounder/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Backgrounder-Location/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.hococoder.TheBackgrounder;
 				PRODUCT_NAME = "$(TARGET_NAME)";

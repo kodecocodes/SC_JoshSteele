@@ -33,25 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    
-    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-    
+        
     return true
-  }
-  
-  func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    if let tabBarController = window?.rootViewController as? UITabBarController,
-      let viewControllers = tabBarController.viewControllers
-    {
-      for viewController in viewControllers {
-        if let fetchViewController = viewController as? FetchViewController {
-          fetchViewController.fetch {
-            fetchViewController.updateUI()
-            completionHandler(.newData)
-          }
-        }
-      }
-    }
   }
 }
 

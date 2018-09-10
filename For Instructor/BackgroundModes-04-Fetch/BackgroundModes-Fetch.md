@@ -41,12 +41,13 @@ I've got a project setup already that has a simplified version of that you might
 
 Let's start the app, and take a look at what it does.  A simple UI shows a label, showing "Not yet updated", and an "Update" button.  When you tap that button, the time is fetched and the UI is updated.  
 
-Let's get the project updated so when the app is background, and then brought to the foreground, the time is automatically up to date, no longer requiring the user to press the button, improving their overall experience.  
+[Show the app in the simulator]
 
+Let's get the project updated so when the app is background, and then brought to the foreground, the time is automatically up to date, no longer requiring the user to press the button, improving their overall experience.  
 
 First, let's enable the background fetch background mode.  Go to your project file, select the target, toggle the Background Modes switch to "On" and select the Background Fetch mode.  Easy!
 
-Now, into the code - in AppDelegate.swift, set the minimum background fetch interval application(didFinishLaunchingWithOptions)
+Now, onto the code - in AppDelegate.swift, set the minimum background fetch interval in application(didFinishLaunchingWithOptions)
 
 ```
 UIApplication.shared.setMinimumBackgroundFetchInterval(
@@ -63,9 +64,9 @@ func application(_ application: UIApplication, performFetchWithCompletionHandler
   //1
   if let viewController = window?.rootViewController as? FetchViewController
   {
-       fetchViewController.fetch {
+       viewController.fetch {
           //4
-          fetchViewController.updateUI()
+          viewController.updateUI()
           completionHandler(.newData)
         }
   }
@@ -74,13 +75,13 @@ func application(_ application: UIApplication, performFetchWithCompletionHandler
 
 In this code, when fetch completes, the UI gets updated via the updateUI method, and the completionHandler that was passed in gets invoked, with a .newData argument, signaling we have new data coming in - note this could also be .noData or .failed depending on the conditions of the fetch.  
 
-We can test this code in 2 ways.  One, is to use the "Simulate Background" menu item under the "Debug" Menu.  Start your app on the device, and notice the message correctly reads "Not yet updated".  In Xcode's Debug menu, go to Simulate Background fetch, and the debugger will trap.  
+We can test this code in 2 ways.  One, is to use the "Simulate Background Fetch" menu item under the "Debug" Menu.  Start your app on the simulator, and notice the message correctly reads "Not yet updated".  Background the app, and in Xcode's Debug menu, go to Simulate Background fetch, and a background fetch request will be sent to the app.  
 
 [Walk through these steps]
 
-Instruct the debugger to continue, reopen the app, and you'll see that the time is updated!
+Reopen the app, and you'll see that the time is updated!
 
-You can also make a new scheme that launches your app directly into suspension.  Clone the current scheme, and under the options tab in the scheme, click the checkbox now to Background Fetch - Launch due to a background fetch event.  
+You can also make a new scheme that launches your app directly into suspension.  Clone the current app, and under the options tab in the scheme, click the checkbox next to Background Fetch - Launch due to a background fetch event.  
 
 If you run the app now - you'll notice it never opens, but is instead launched into a suspended state.  If you manually launch it, you'll see that instead of "Not yet updated" there is actually a time displayed on screen!  
 
