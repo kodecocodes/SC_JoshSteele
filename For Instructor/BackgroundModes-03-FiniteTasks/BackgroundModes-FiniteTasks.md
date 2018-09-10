@@ -22,14 +22,7 @@ You can run tasks for a finite time in the background with a special API in iOS.
 
 Hey everyone, it's Josh, and I'm back with another raywenderlich.com screencast.  Have you ever wondered how some apps continue to do activities, even though they're in the background?  Well, in this screencast, I'll go over how you can enable your app to perform some finite background tasks.    
 
-Before we start, I'd like to give a big thanks to Chris Wagner, who wrote the original background modes tutorial, which is the basis for this screen cast, as well as a big thanks to Brody Eller who updated the tutorial for Xcode 10 and Swift 4.2  Be sure to give them a follow on twitter if you like what you see here.  
-
-
-Waaaaaay back in 2010 when iOS 4 was released, Apple introduced multitasking, and along with it the concept of background modes.  Background modes allowed developers to execute a set of restricted tasks when the app is backgrounded.  This restriction allows the system to attempt to maintain a responsive user interface as well as extend battery life - for example, you don't want a 30 minute download going on in the background, using your battery and other resources.  
-
-Before we start, a quick note - you should probably follow along on a real device, so you can properly background the app - the simulator can, well, simulate this, but the device will handle it better.  
-
-One more thing to note before we dive in - if you try to do things in the background that aren't in the background modes capability list, you risk getting rejected by the App Store.  So consider yourselves warned!
+### COMMON BLOCK HERE - see audio script
 
 Ok, performing background tasks isn't actually a "background mode" capability like some of the others you may be familiar with like audio, location updates or background fetch. It's actually its own API in iOS.  This iOS feature is typically used when you need to finish up some long running tasks, like rendering and writing a video to the camera roll.  However, that's just an example - you can pretty much do anything you want - but keep in mind that you only get a finite set of time - we're talking a small number of minutes.  
 

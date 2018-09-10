@@ -22,15 +22,8 @@ You can use fetch data in the background with a background mode, allowing your a
 
 Hey everyone, it's Josh, and I'm back with another raywenderlich.com screencast.  Have you ever wondered how some apps continue to do activities, even though they're in the background?  Well, in this screencast, I'll go over how you can enable your app to fetch data in the background, so when your user brings the app to the front, it has up to date content.  
 
-Before we start, I'd like to give a big thanks to Chris Wagner, who wrote the original background modes tutorial, which is the basis for this screen cast, as well as a big thanks to Brody Eller who updated the tutorial for Xcode 10 and Swift 4.2  Be sure to give them 
-a follow on twitter if you like what you see here.  
+### COMMON BLOCK HERE - see audio script
 
-
-Waaaaaay back in 2010 when iOS 4 was released, Apple introduced multitasking, and along with it the concept of background modes.  Background modes allowed developers to execute a set of restricted tasks when the app is backgrounded.  This restriction allows the system to attempt to maintain a responsive user interface as well as extend battery life - for example, you don't want a 30 minute download going on in the background, using your battery and other resources.  
-
-Before we start, a quick note - you should probably follow along on a real device, so you can properly background the app - the simulator can, well, simulate this, but the device will handle it better.  
-
-One more thing to note before we dive in - if you try to do things in the background that aren't in the background modes capability list, you risk getting rejected by the App Store.  So consider yourselves warned!
 
 Background fetch was introduced in iOS 7, allowing you to have up to date information ready to go in your app so when your view is displayed, that content is shown.  Before this, you had to show old data in your views, waiting while the app fetched new data, and then you had to refresh the views.  That's not a great user experience, so let's see how Background fetch works.   
 
