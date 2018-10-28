@@ -33,7 +33,15 @@ With that battle plan in mind, let's dive into the code, and connect RWConnect t
 
 #DEMO
 
-RWConnect is in pretty good shape, but we need to move information that is currently in the Friend structs in the contacts store.  The first step in doing this is to convert that information to a CNContact object.  Let's make an extension on the `Friend` class, and declare the computed property `contactValue` which will build the `CNContact` object from the information in the `Friend` struct.  
+RWConnect is in pretty good shape, but we need to move information that is currently in the Friend structs in the contacts store.  
+
+To do all of this however, we'll need to import Contacts and ContactsUI at the top of the file, so let's go ahead and do that.
+
+`import Contacts`
+
+`import ContactsUI`
+
+The first step in doing this is to convert that information to a CNContact object.  Let's make an extension on the `Friend` class, and declare the computed property `contactValue` which will build the `CNContact` object from the information in the `Friend` struct.  
 
 Declare the CNContact var, and start off by making a CNMutableContact object - this will let us populate the fields for the contact. 
 
@@ -116,7 +124,23 @@ Finally, if we want to import friends from our contact list, we can add some cod
     present(contactPicker, animated: true, completion: nil)
 ``` 
 
-`FriendsViewController` needs to conform to CNContactPickerDelegate, and that can be done with an extenstion:
+If we were to run this now, we'd be able to see the contacts, but we wouldn't be able to select them and add them to our friends list.  To fix that, we need to do 2 things - first, let's make an init method in the Friend class that takes in a CNContact
+
+```
+init(contact:CNContact) {
+ firstName = contact.givenName
+ lastName = contact.familyName
+ workEmail = contact.emailAddresses.first!.value as String
+ if let imageData = contact.imageData {
+   profilePicture = UIImage(data: imageData)
+ } else {
+   profilePicture = nil
+ }
+}
+```
+
+
+Next, `FriendsViewController` needs to conform to CNContactPickerDelegate, and that can be done with an extenstion:
 
 ```
 extension FriendsViewController : CNContactPickerDelegate {

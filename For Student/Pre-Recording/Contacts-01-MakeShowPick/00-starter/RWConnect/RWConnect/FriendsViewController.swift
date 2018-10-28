@@ -60,3 +60,17 @@ extension FriendsViewController {
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {}
   
 }
+
+//MARK: UITableViewDelegate
+extension FriendsViewController {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+  }
+  
+}
+
+extension FriendsViewController : CNContactPickerDelegate {
+  func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+
+  }
+}

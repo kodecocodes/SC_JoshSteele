@@ -57,22 +57,6 @@ class FriendsViewController: UITableViewController {
   }
   
   func saveFriendToContacts(_ friend: Friend) {
-    //1
-    let contactFormatter = CNContactFormatter()
-    //2
-    let contactName = contactFormatter.string(from: friend.contactValue)!
-    //3
-    let predicateForMatchingName = CNContact.predicateForContacts(matchingName: contactName)
-    //4
-    let matchingContacts = try! CNContactStore().unifiedContacts(matching: predicateForMatchingName, keysToFetch: [])
-    guard matchingContacts.isEmpty else {
-      DispatchQueue.main.async{
-        let alert = UIAlertController(title:"Contact Already Exists", message:nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-      }
-      return
-    }
     
     //1
     let contact = friend.contactValue.mutableCopy() as! CNMutableContact
