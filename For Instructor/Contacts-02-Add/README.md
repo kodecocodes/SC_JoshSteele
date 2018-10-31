@@ -30,7 +30,7 @@ When we want to add new contacts, your app needs to access private user data - i
 
 In this screencast - once we've taken care of asking for permission to access the Contacts store - we'll do 2 things.  First, we'll make our rows in the table have an action for adding that friend to our contacts, and second, actually perform the calls to save the new contact to the store.  
 
-With that in mind, let's go over how to add a new contact to the contact store. 
+Ok, in its current state, I an see my friend's contact information in a very familar contacts UI, and I can also import current contacts into RWConnect - but what if I want to go the other way, and move a friend from RWConnect into my Contacts?  Let's go over how to add a new contact to the contact store. 
 
 #DEMO
 

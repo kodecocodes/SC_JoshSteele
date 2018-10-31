@@ -41,7 +41,7 @@ To do all of this however, we'll need to import Contacts and ContactsUI at the t
 
 `import ContactsUI`
 
-The first step in doing this is to convert that information to a CNContact object.  Let's make an extension on the `Friend` class, and declare the computed property `contactValue` which will build the `CNContact` object from the information in the `Friend` struct.  
+The first step in doing this is to convert that information to a CNContact object.  Let's make an extension on the `Friend` struct, and declare the computed property `contactValue` which will build the `CNContact` object from the information in the `Friend` struct.  
 
 Declare the CNContact var, and start off by making a CNMutableContact object - this will let us populate the fields for the contact. 
 
@@ -84,7 +84,11 @@ Finally, return a immutable copy of the `CNContact` using the `copy` method.
   }
 ```
 
-Next, let's allow the user to view a contact in the app.  In the FriendsViewController table view delegate extension, grab the currently selected friend from the friendsList, and then use the computed property we defined earlier to make a contact.  
+Next, let's allow the user to view a contact in the app.  In the FriendsViewController table view delegate extension, grab the currently selected friend from the friendsList, and then use the computed property we defined earlier to make a contact.  First - be sure to import the frameworks again!
+
+`import Contacts`
+
+`import ContactsUI`
 
 ```
 	//1
@@ -100,7 +104,7 @@ Now, create a CNContactViewController, using the forUnknownContact initializier,
     contactViewController.hidesBottomBarWhenPushed = true
 ```
 
-Next, disallow editing and actions on the view controller
+Next, disallow editing and actions on the view controller - we're in read only mode here
 
 ```
     //3
@@ -124,7 +128,7 @@ Finally, if we want to import friends from our contact list, we can add some cod
     present(contactPicker, animated: true, completion: nil)
 ``` 
 
-If we were to run this now, we'd be able to see the contacts, but we wouldn't be able to select them and add them to our friends list.  To fix that, we need to do 2 things - first, let's make an init method in the Friend class that takes in a CNContact
+If we were to run this now and tap on the plus button, we'd be able to see the contacts, but we wouldn't be able to select them and add them to our friends list.  To fix that, we need to do 2 things - first, let's make an init method in the Friend struct that takes in a CNContact
 
 ```
 init(contact:CNContact) {
@@ -158,12 +162,14 @@ extension FriendsViewController : CNContactPickerDelegate {
 
 Here, we're grabbing the picked contact (if one was picked), and building a Friend struct out of it.  Then, if that friend doesn't already exist in the app, it gets appended to the `friendsList`.  The table view also gets reloaded in case new data was added.  
 
-Finally, don't forget to set the contact pickers' delegate to self.  Also, we want to make sure we only enable the selection of contacts that have email addresses, so we set a predicate via the contact picker's `predicateForEnablingContact` method.  
+Finally, don't forget to set the contact pickers' delegate to self up in `addFriends`.  Also, we want to make sure we only enable the selection of contacts that have email addresses, so we set a predicate via the contact picker's `predicateForEnablingContact` method.  
 
 ```
     contactPicker.delegate = self
     contactPicker.predicateForEnablingContact = NSPredicate(format: "emailAddresses.@count > 0")
 ```
+
+If we run this in the simulator, we can press the plus button, pick a contact, and see it appear as a friend in RWConnect.  
 
 #OUTRO
 
