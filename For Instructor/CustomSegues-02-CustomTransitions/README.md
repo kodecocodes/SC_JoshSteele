@@ -72,7 +72,7 @@ class ScalePresentAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 }
 ```
 
-We'll use this to present the modal view controller.  Note that I'm keeping the animators in the same file as its segue, since their closely related, but they can be kept in separate files if desired.  
+We'll use this to present the modal view controller.  Note that I'm keeping the animators in the same file as its segue, since they're closely related, but they can be kept in separate files if desired.  
 
 ## Define the animation and its duration to be used in animators
 
@@ -116,6 +116,8 @@ func animateTransition(using transitionContext: UIViewControllerContextTransitio
     })
   }
 ```
+This is a little involved, so let's break this down.  First, we've grabbed the "to" viewcontroller and views from the transitionContext.  Second, if the destination view isn't nil, add it to the transitionContext's containerView so it can be presented.  Third, define the inital frame and lay it out.  Fourth, get the duration for this transition and the final frame for the transition so that finally, we can perform the animation with the given transition, setting the final frame as the destination for the animation and calling "completeTransition" on the transition Context.  
+
 
 ## Instruct the segue which animator classes to use
 

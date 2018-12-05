@@ -49,17 +49,19 @@ Restore the code to the previous state.
 let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
 ```
 
-In the animation block near the end of `animateTransition`, add in some code to fade out the from View
+In the animation block near the end of `animateTransition`, add in some code to fade out the `from` View
 
 ```
 fromView?.alpha = 0.0
 ```
 
-Then, after the call to `completeTransition`, add in 
+Then, after the call to `completeTransition`, add in some code to fade the view back in
 
 ```
 fromView?.alpha = 1.0
 ```
+
+If I run this in the iPhone simulator, you can see the from view fade away as the animation takes place.  In the iPad however, the presentation layer handles the fading of the background so our `fromView` property is nil
 
 # Script
 
@@ -83,7 +85,7 @@ if let fromNC = fromViewController as? UINavigationController {
   }
 }
 ```
-Here this replaces the fromViewController only if the presenting view controller is a navigation controller.  
+Here this replaces the fromViewController only if the presenting view controller is a navigation controller.  Run this in the simulator to see that the animation takes place from the proper location
 
 #OUTRO
 
