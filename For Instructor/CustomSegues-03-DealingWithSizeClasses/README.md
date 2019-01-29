@@ -5,7 +5,7 @@
 
 ## Screencast Title
 
-Custom Segues - Dealing with Size Classes
+Custom Segues: Dealing with Size Classes
 
 ## Screencast Description
 
