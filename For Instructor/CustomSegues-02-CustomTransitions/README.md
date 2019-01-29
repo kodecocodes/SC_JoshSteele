@@ -5,7 +5,7 @@
 
 ## Screencast Title
 
-Custom Segues - Custom Transitions
+Custom Segues: Custom Transitions
 
 ## Screencast Description
 
